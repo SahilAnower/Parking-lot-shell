@@ -58,3 +58,25 @@
 1707399007968:cls
 1707407702060:help
 1707407709783:clear
+1707410906831:help
+1707410925852:create_parking_lot 6
+1707410947866:park c1 white
+1707410954252:park c2 black
+1707410963141:park c3 white
+1707410972532:park c4 red
+1707410987127:park c5 black
+1707410992557:park c6 white
+1707411016935:leave 4
+1707411021260:status
+1707411040856:park c7 red
+1707411062833:registration_numbers_for_cars_with_colour red
+1707411070068:registration_numbers_for_cars_with_colour white
+1707411100179:slot_numbers_for_cars_with_colour white
+1707411106906:slot_numbers_for_cars_with_colour red
+1707411123772:exit
+1707419843132:help
+1707424816983:create_parking_lot 6
+1707424824617:park c1 red
+1707424829125:park c2 blue
+1707424832393:status
+1707424846373:registration_numbers_for_cars_with_colour red
