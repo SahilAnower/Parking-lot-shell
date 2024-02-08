@@ -18,9 +18,9 @@ public class ParkingLotCommands {
     // array of registrationNo strings of cars
     private String[] registrationNos;
     // map to store:
-    // {color1} -> [slot1, slot2,...]
-    // {color2} -> [slot3, slot4,...]
-    private HashMap<String, List<Integer>> colorToSlot;
+    // {color1} -> [{slot1 -> 1}, {slot2 -> 1}...]
+    // {color2} -> [{slot3 -> 1}, {slot4 -> 1}...]
+    private HashMap<String, HashMap<Integer, Integer>> colorToSlot;
     // map to store:
     // {registrationNoString1} -> slot1
     // {registrationNoString2} -> slot2
@@ -59,9 +59,9 @@ public class ParkingLotCommands {
         colors[topIndex] = color;
         registrationNos[topIndex] = registrationNumber;
         if (!colorToSlot.containsKey(color)) {
-            colorToSlot.put(color, new ArrayList<>());
+            colorToSlot.put(color, new HashMap<>());
         }
-        colorToSlot.get(color).add(topIndex);
+        colorToSlot.get(color).put(topIndex, 1);
         registrationNoToSlot.put(registrationNumber, topIndex);
         return "Allocated slot number: " + topIndex;
     }
@@ -75,7 +75,7 @@ public class ParkingLotCommands {
             return "Slot already empty!";
         }
         priorityQueue.add(slot);
-        colorToSlot.get(colors[slot]).remove(Integer.valueOf(slot));
+        colorToSlot.get(colors[slot]).remove(slot);
         registrationNoToSlot.remove(registrationNos[slot]);
         colors[slot] = "";
         registrationNos[slot] = "";
@@ -105,7 +105,7 @@ public class ParkingLotCommands {
             return "No cars found of this colour";
         }
         StringBuilder sb = new StringBuilder();
-        for (Integer slot : colorToSlot.get(color)) {
+        for (Integer slot : colorToSlot.get(color).keySet()) {
             sb.append(registrationNos[slot]).append(", ");
         }
         sb.setLength(sb.length() - 2);
@@ -131,6 +131,6 @@ public class ParkingLotCommands {
         if (!colorToSlot.containsKey(color)) {
             return "No slots found for this colour";
         }
-        return colorToSlot.get(color).toString();
+        return colorToSlot.get(color).keySet().toString();
     }
 }
